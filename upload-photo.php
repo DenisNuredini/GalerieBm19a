@@ -11,12 +11,21 @@ if (isset($_POST['btn_upload']))
     $filetitle = $_POST['img_title'];
     
     move_uploaded_file($filetmp, $filepath);
-    
-    $stmt = $dbc->prepare("INSERT INTO tbl_photos (img_name, img_type, img_path, img_title) VALUES (:iname, :itype, :ipath, :ititle) ");
-    $stmt->bindValue(':iname', $filename);
-    $stmt->bindValue('itype', $filetype);
-    $stmt->bindValue('ipath', $filepath);
-    $stmt->bindValue('ititle', $filetitle);
+
+    $exif = @exif_read_data("./img/".$filename);
+    $fileheight = $exif["COMPUTED"]["Height"];
+    $filewidth = $exif["COMPUTED"]["Width"];
+    $filedate = $size = $exif["IFD0"]["Make"];
+
+    $stmt = $dbc->prepare("INSERT INTO tbl_photos (img_name, img_type, img_path, img_title, img_height, img_width, img_time) VALUES (:name, :type, :path, :title, :height, :width, :date) ");
+    $stmt->bindValue(':name', $filename);
+    $stmt->bindValue('type', $filetype);
+    $stmt->bindValue('path', $filepath);
+    $stmt->bindValue('title', $filetitle);
+    $stmt->bindValue('height', $fileheight);
+    $stmt->bindValue('width', $filewidth);
+    $stmt->bindValue('date', "");
+
     if ($stmt->execute())
       {
         header('Location: index.php?success=yes&title=' . $filetitle);

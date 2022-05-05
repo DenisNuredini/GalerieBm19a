@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: April 5, 2019 at 03:47 PM
+-- Generation Time: April 5, 2022 at 03:47 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -31,7 +31,10 @@ CREATE TABLE IF NOT EXISTS `tbl_photos` (
   `img_name` varchar(255) NOT NULL,
   `img_path` varchar(255) NOT NULL,
   `img_type` varchar(255) NOT NULL,
-  `img_title` varchar(255) NOT NULL
+  `img_title` varchar(255) NOT NULL,
+  `img_height` varchar(255) NOT NULL,
+  `img_width` varchar(255) NOT NULL,
+  `img_time` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --

@@ -64,7 +64,7 @@
                ?>
                <li>
                   <a href="<?= $img['img_path']; ?>">
-                  <img data-caption="<?= $img['img_title']; ?>" src="<?= $img['img_path']; ?>"></a>
+                  <img data-caption="Name: <?= $img['img_title']; ?>, Höhe: <?= $img['img_height']; ?>, Breite: <?= $img['img_width']; ?>" src="<?= $img['img_path']; ?>"></a>
                </li>
                <?php } ?>
             </ul>
